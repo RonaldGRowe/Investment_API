@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InvestingAPI.Data;
 using AutoMapper;
-using InvestmentsAPI.DtoModels;
 using InvestmentsAPI.DtoModels.Account;
 
 namespace InvestingAPI.Controllers
@@ -65,8 +59,9 @@ namespace InvestingAPI.Controllers
         // PUT: api/Accounts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccount(int id, AccountCreateDto accountDto)
+        public async Task<IActionResult> PutAccount(int id, AccountEditDto accountDto)
         {
+            accountDto.AccountId = id;
             var account = mapper.Map<Account>(accountDto);
             if (id != account.AccountId)
             {
